@@ -9,6 +9,7 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
+import { ClipboardListOutline } from 'mdi-material-ui'
 
 const navigation = () => {
   return [
@@ -44,7 +45,12 @@ const navigation = () => {
       openInNewTab: true
     },
     {
-      sectionTitle: 'User Interface'
+      sectionTitle: 'Administracion'
+    },
+    {
+      icon: ClipboardListOutline,
+      title: 'Listas',
+      path: '/listas'
     },
     {
       title: 'Typography',
