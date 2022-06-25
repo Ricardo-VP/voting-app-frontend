@@ -86,10 +86,10 @@ const FormLayoutsSeparator = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Nombres' placeholder='Leonard' />
+              <TextField fullWidth label='Nombres'/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Apellidos' placeholder='Carter' />
+              <TextField fullWidth label='Apellidos'/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
