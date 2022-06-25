@@ -192,7 +192,7 @@ const LoginPage = () => {
             >
               <FormControlLabel control={<Checkbox />} label='Remember Me' />
               <Link passHref href='/'>
-                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
+                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password xd?</LinkStyled>
               </Link>
             </Box>
             <Button
