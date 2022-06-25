@@ -9,7 +9,7 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
-import { ClipboardListOutline } from 'mdi-material-ui'
+import { ClipboardListOutline, InformationOffOutline, InformationVariant, Poll } from 'mdi-material-ui'
 
 const navigation = () => {
   return [
@@ -24,7 +24,7 @@ const navigation = () => {
       path: '/account-settings'
     },
     {
-      sectionTitle: 'Pages'
+      sectionTitle: 'Administración'
     },
     {
       title: 'Login',
@@ -39,44 +39,31 @@ const navigation = () => {
       openInNewTab: true
     },
     {
-      title: 'Error',
-      icon: AlertCircleOutline,
-      path: '/pages/error',
-      openInNewTab: true
-    },
-    {
-      sectionTitle: 'Administracion'
+      icon: AccountPlusOutline,
+      title: 'Registrar lista',
+      path: '/pages/add-list'
     },
     {
       icon: ClipboardListOutline,
       title: 'Listas',
-      path: '/listas'
+      path: '/pages/listas'
     },
     {
-      title: 'Typography',
-      icon: FormatLetterCase,
-      path: '/typography'
+      icon: Poll,
+      title: 'Análisis de datos',
+      path: '/pages/data'
+    },
+    {
+      icon: InformationVariant,
+      title: 'Info',
+      path: '/pages/info'
     },
     {
       title: 'Icons',
       path: '/icons',
       icon: GoogleCirclesExtended
-    },
-    {
-      title: 'Cards',
-      icon: CreditCardOutline,
-      path: '/cards'
-    },
-    {
-      title: 'Tables',
-      icon: Table,
-      path: '/tables'
-    },
-    {
-      icon: CubeOutline,
-      title: 'Form Layouts',
-      path: '/form-layouts'
     }
+    
   ]
 }
 
