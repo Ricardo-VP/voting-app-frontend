@@ -5,12 +5,14 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
-const CardAppleWatch = () => {
+//enviar parametro de lista con info
+
+const CardLista = () => {
   return (
     <Card>
       {/* imagen de lista o integrantes*/}
       <CardMedia sx={{ height: '9.375rem' }} image='/images/cards/watch-on-hand.jpg' />
-      <CardContent sx={{ padding: theme => `${theme.spacing(3, 5.25, 4)} !important` }}>
+      <CardContent sx={{ padding: theme => `${theme.spacing(2, 5.25, 4)} !important` }}>
         <Typography variant='h6' sx={{ marginBottom: 2 }}>
           Lista "Nombre"
         </Typography>
@@ -26,4 +28,4 @@ const CardAppleWatch = () => {
   )
 }
 
-export default CardAppleWatch
+export default CardLista
