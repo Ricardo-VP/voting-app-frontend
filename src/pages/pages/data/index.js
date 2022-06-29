@@ -1,12 +1,11 @@
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
 
 // ** Demo Components Imports
-import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
-
-// ** Icons Imports
-import { CurrencyUsd } from 'mdi-material-ui'
+import WeeklyOverview from 'src/views/data/WeeklyOverview'
+import PieGraph from 'src/views/data/PieGraph'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
@@ -21,11 +20,16 @@ const AnalisisData = () => {
         </Grid>
     </Grid>
     <Grid item xs={6}>
-    <Grid item xs={12} md={6} lg={4}>
-          <WeeklyOverview />
-        </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <WeeklyOverview />
+      </Grid>
     </Grid>
-
+    <Divider sx={{ my: 5 }}></Divider>
+    <Grid item xs={6}>
+      <Grid item xs={12} md={6} lg={4}>
+        <PieGraph />
+      </Grid>
+    </Grid>
     </>
   )
 }
