@@ -1,13 +1,16 @@
 // ** Icon imports
-import { Login, AccountPlusOutline, ClipboardListOutline, InformationVariant, Poll } from 'mdi-material-ui'
+import { Login, HomeOutline, AccountPlusOutline, ClipboardListOutline, InformationVariant, Poll } from 'mdi-material-ui'
 
 const navigation = () => {
   return [
-    // {
-    //   title: 'Dashboard',
-    //   icon: HomeOutline,
-    //   path: '/'
-    // },
+    {
+      sectionTitle: 'Inicio'
+    },
+    {
+      title: 'Pantalla Principal',
+      icon: HomeOutline,
+      path: '/pages/inicio'
+    },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,
