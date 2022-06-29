@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider'
 
 // ** Demo Components Imports
 import WeeklyOverview from 'src/views/admin/data/WeeklyOverview'
-import PieGraph from 'src/views/data/PieGraph'
+import PieGraph from 'src/views/admin/data/PieGraph'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
