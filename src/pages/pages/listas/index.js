@@ -5,9 +5,6 @@ import Typography from '@mui/material/Typography'
 // ** Demo components
 import CardLista from 'src/views/listas/CardLista'
 
-// ** Styled Component
-import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
-
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
 
