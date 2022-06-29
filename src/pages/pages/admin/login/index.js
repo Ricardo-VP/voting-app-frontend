@@ -136,7 +136,7 @@ const LoginPage = () => {
               size='large'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={() => router.push('/pages/inicio')}
+              onClick={() => router.push('/pages/admin/inicio')}
             >
               ingresar
             </Button>

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 
 // ** Demo Components Imports
-import WeeklyOverview from 'src/views/data/WeeklyOverview'
+import WeeklyOverview from 'src/views/admin/data/WeeklyOverview'
 import PieGraph from 'src/views/data/PieGraph'
 
 // ** Third Party Styles Imports

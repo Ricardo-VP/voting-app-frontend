@@ -9,26 +9,21 @@ const navigation = () => {
     {
       title: 'Pantalla Principal',
       icon: HomeOutline,
-      path: '/pages/inicio'
+      path: '/pages/admin/inicio'
     },
-    // {
-    //   title: 'Account Settings',
-    //   icon: AccountCogOutline,
-    //   path: '/account-settings'
-    // },
     {
       sectionTitle: 'Registros'
     },
     {
       title: 'Login',
       icon: Login,
-      path: '/pages/login',
+      path: '/pages/admin/login',
       openInNewTab: true
     },
     {
       title: 'Register',
       icon: AccountPlusOutline,
-      path: '/pages/register',
+      path: '/pages/admin/register',
       openInNewTab: true
     },
     {
@@ -37,22 +32,22 @@ const navigation = () => {
     {
       icon: AccountPlusOutline,
       title: 'Agregar lista',
-      path: '/pages/add-list'
+      path: '/pages/admin/add-list'
     },
     {
       icon: ClipboardListOutline,
       title: 'Listas',
-      path: '/pages/listas'
+      path: '/pages/admin/listas'
     },
     {
       icon: Poll,
       title: 'Análisis de datos',
-      path: '/pages/data'
+      path: '/pages/admin/data'
     },
     {
       icon: InformationVariant,
       title: 'Info',
-      path: '/pages/info'
+      path: '/pages/admin/info'
     }    
   ]
 }

@@ -1,5 +1,4 @@
 // ** MUI Imports
-import Box from '@mui/material/Box'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Layout Imports
