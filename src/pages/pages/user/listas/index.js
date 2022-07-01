@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 // ** Demo components
-import CardLista from 'src/views/listas/CardLista'
+import CardLista from 'src/views/user/listas/CardLista'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
