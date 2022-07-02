@@ -17,8 +17,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 //enviar parametro de lista con info
 
 const CardLista = ({ lista }) => {
-  // ** Hook
-  const router = useRouter()
+// ** Hook
+const router = useRouter()
 
   const [open, setOpen] = useState(false)
 
