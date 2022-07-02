@@ -18,8 +18,8 @@ const InfoPage = () => {
     },
     {
       nombre: 'FERNANDO SEBASTIAN GUERRA OCAÑA - 7046',
-      email: 'nigelljama@gmail.com',
-      github: 'Gokrusk',
+      email: 'fernando.guerra@espoch.edu.ec',
+      github: '',
       fotoUrl: 'https://cdn-icons-png.flaticon.com/512/17/17797.png'
     }
   ]

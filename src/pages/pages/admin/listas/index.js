@@ -9,6 +9,24 @@ import CardLista from 'src/views/admin/listas/CardLista'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const AdministrarListas = () => {
+
+  const lista = [
+    {
+      nombre: 'A',
+      presidente: 'Pepito',
+      vicepresidente: 'tomas',
+      otros: 'jaimito'
+    },
+    {
+      nombre: 'B',
+      presidente: 'matias',
+      vicepresidente: 'pedro',
+      otros: 'xavi'
+    }
+  ]
+
+  const indice = 1
+
   return (
     <>
 
@@ -19,10 +37,12 @@ const AdministrarListas = () => {
       </Grid>
 
       <Grid container spacing={6}>
+        {lista.map(lista=>(
+          <Grid key = {indice + 1} item xs={12} sm={6} md={4}>
+            <CardLista lista={lista}/>
+          </Grid>
+        ))}
         
-        <Grid item xs={12} sm={6} md={4}>
-            <CardLista />
-        </Grid>
         
       </Grid>
 
