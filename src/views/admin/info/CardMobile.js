@@ -35,19 +35,15 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
   }
 }))
 
-// enviar parametro con info
-let a = "NIGELL MARCEL JAMA OYARVIDE - 7046"
-let b = "FERNANDO SEBASTIAN GUERRA OCAÑA - 7046"
-
-const CardMobile = () => {
+const CardMobile = ({ programador }) => {
   // ** State
-  
+
   return (
     <Card>
       <Grid container spacing={6}>
         <StyledGrid item md={5} xs={12}>
           <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img width={137} height={176} alt='Apple iPhone 11 Pro' src='/images/cards/iPhone-11-pro.png' />
+            <img width={137} height={176} alt='Apple iPhone 11 Pro' src={programador?.fotoUrl} />
           </CardContent>
         </StyledGrid>
         <Grid
@@ -61,16 +57,15 @@ const CardMobile = () => {
         >
           <CardContent>
             <Typography variant='h6' sx={{ marginBottom: 2 }}>
-              NOMBRES - CODE
+              {programador?.nombre}
             </Typography>
             <Typography variant='body1' sx={{ marginBottom: 3.5 }}>
-              Email: correo@correo.com
+              Email: {programador?.email}
             </Typography>
             <Typography variant='body1' sx={{ marginBottom: 3.5 }}>
-              Github: correo@correo.com
+              Github: {programador?.github}
             </Typography>
           </CardContent>
-          
         </Grid>
       </Grid>
     </Card>
