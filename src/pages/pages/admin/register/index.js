@@ -170,7 +170,7 @@ const RegisterPage = () => {
                 ¿Ya tienes una cuenta?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/admin//login'>
+                <Link passHref href='/pages/admin/login'>
                   <LinkStyled>Ingresa aquí</LinkStyled>
                 </Link>
               </Typography>
