@@ -12,7 +12,7 @@ const InfoPage = () => {
   const programadores = [
     {
       nombre: 'NIGELL MARCEL JAMA OYARVIDE - 7046',
-      email: 'nigelljama@gmail.com',
+      email: 'nigell.jama@espoch.edu.ec',
       github: 'Gokrusk',
       fotoUrl: 'https://img.icons8.com/ios/500/user--v1.png'
     },
