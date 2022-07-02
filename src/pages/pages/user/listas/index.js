@@ -5,8 +5,6 @@ import Typography from '@mui/material/Typography'
 // ** Demo components
 import CardLista from 'src/views/user/listas/CardLista'
 
-// ** Third Party Styles Imports
-import 'react-datepicker/dist/react-datepicker.css'
 
 const AdministrarListas = () => {
   return (
