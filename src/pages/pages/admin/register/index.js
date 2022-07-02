@@ -1,16 +1,17 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 
 // ** Next Imports
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-
+import Divider from '@mui/material/Divider'
+import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
+import InputLabel from '@mui/material/InputLabel'
 import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
@@ -21,6 +22,10 @@ import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
 
 // ** Icons Imports
+import Google from 'mdi-material-ui/Google'
+import Github from 'mdi-material-ui/Github'
+import Twitter from 'mdi-material-ui/Twitter'
+import Facebook from 'mdi-material-ui/Facebook'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 
@@ -45,14 +50,16 @@ const LinkStyled = styled('a')(({ theme }) => ({
 }))
 
 const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
+  marginTop: theme.spacing(1.5),
+  marginBottom: theme.spacing(4),
   '& .MuiFormControlLabel-label': {
     fontSize: '0.875rem',
     color: theme.palette.text.secondary
   }
 }))
 
-const LoginPage = () => {
-  // ** State
+const RegisterPage = () => {
+  // ** States
   const [values, setValues] = useState({
     password: '',
     showPassword: false
@@ -60,7 +67,6 @@ const LoginPage = () => {
 
   // ** Hook
   const theme = useTheme()
-  const router = useRouter()
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
@@ -83,30 +89,29 @@ const LoginPage = () => {
             <Typography
               variant='h6'
               sx={{
-                
                 lineHeight: 1,
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 fontSize: '1.5rem !important'
               }}
             >
-              {themeConfig.templateName}
+              REGISTRATE
             </Typography>
           </Box>
           <Box sx={{ mb: 6 }}>
             <Typography variant='h6' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
-              Bienvenidos
+              Comencemos! 🚀
             </Typography>
-            <Typography variant='body2'>Ingrese con su cédula y contraseña</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' label='Cédula' sx={{ marginBottom: 4 }} />
+            <TextField autoFocus fullWidth id='username' label='Cédula' sx={{ marginBottom: 4 }} />
+            {/* <TextField fullWidth type='email' label='Email' sx={{ marginBottom: 4 }} /> */}
             <FormControl fullWidth>
-              <InputLabel htmlFor='auth-login-password'>Contraseña</InputLabel>
+              <InputLabel htmlFor='auth-register-password'>Contraseña</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={values.password}
-                id='auth-login-password'
+                id='auth-register-password'
                 onChange={handleChange('password')}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
@@ -117,39 +122,36 @@ const LoginPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label='toggle password visibility'
                     >
-                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                      {values.showPassword ? <EyeOutline fontSize='small' /> : <EyeOffOutline fontSize='small' />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
             </FormControl>
-            <Box
-              sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
-            >
-              {/* <FormControlLabel control={<Checkbox />} label='Remember Me' /> */}
-              {/* <Link passHref href='/'>
-                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password xd?</LinkStyled>
-              </Link> */}
-            </Box>
-            <Button
-              fullWidth
-              size='large'
-              variant='contained'
-              sx={{ marginBottom: 7 }}
-              onClick={() => router.push('/pages/admin/inicio')}
-            >
-              ingresar
+            <FormControlLabel
+              control={<Checkbox />}
+              label={
+                <Fragment>
+                  <span>Acepto las </span>
+                  <Link href='/' passHref>
+                    <LinkStyled onClick={e => e.preventDefault()}>políticas de privacidad</LinkStyled>
+                  </Link>
+                </Fragment>
+              }
+            />
+            <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7 }}>
+              REGISTRARSE
             </Button>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                New on our platform?
+                Ya tienes una cuenta?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/register'>
-                  <LinkStyled>Create an account</LinkStyled>
+                <Link passHref href='/pages/admin//login'>
+                  <LinkStyled>Ingresa aquí</LinkStyled>
                 </Link>
               </Typography>
-            </Box> */}
+            </Box>
             
           </form>
         </CardContent>
@@ -158,6 +160,6 @@ const LoginPage = () => {
     </Box>
   )
 }
-LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
+RegisterPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
-export default LoginPage
+export default RegisterPage
