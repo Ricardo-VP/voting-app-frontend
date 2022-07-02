@@ -15,13 +15,13 @@ const AdministrarListas = () => {
       nombre: 'A',
       presidente: 'Pepito',
       vicepresidente: 'tomas',
-      otros: 'jaimito'
+      otros: ['jaimito',', steve']
     },
     {
       nombre: 'B',
       presidente: 'matias',
       vicepresidente: 'pedro',
-      otros: 'xavi'
+      otros: ['xavi', ', cinti']
     }
   ]
 

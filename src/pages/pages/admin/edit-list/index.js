@@ -12,6 +12,18 @@ import FormLayoutsSeparator from 'src/views/admin/edit-list/FormLayoutsSeparator
 import 'react-datepicker/dist/react-datepicker.css'
 
 const FormLayouts = () => {
+
+  const lista = [
+    {
+      nombre: 'A',
+      presidente: 'Pepito',
+      vicepresidente: 'Tomas',
+      otros: ['jaimito', ', steven']
+    },
+  ]
+
+  const indice = 1
+
   return (
     <>
     
@@ -22,10 +34,13 @@ const FormLayouts = () => {
       </Grid>
       <DatePickerWrapper>
         <Grid container spacing={6}>
+          {lista.map(lista=>(
+            <Grid key = {indice+1} item xs={12}>
+              <FormLayoutsSeparator lista={lista}/>
+            </Grid>
+          ))}
           
-          <Grid item xs={12}>
-            <FormLayoutsSeparator />
-          </Grid>
+
         </Grid>
       </DatePickerWrapper>
     </>

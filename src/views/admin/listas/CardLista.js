@@ -13,12 +13,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import useLocation from 'React';
 
 //enviar parametro de lista con info
 
 const CardLista = ({ lista }) => {
 
-  // ** Hook
+// ** Hook
 const router = useRouter()
 
 const [open, setOpen] = useState(false);
