@@ -6,7 +6,28 @@ import Typography from '@mui/material/Typography'
 import CardLista from 'src/views/user/listas/CardLista'
 
 
+
 const AdministrarListas = () => {
+
+  const lista = [
+
+    {
+      nombre: 'A',
+      presidente: 'Pepito',
+      vicepresidente: 'Juan',
+      otros: 'leonidas'
+    },
+    {
+      nombre: 'B',
+      presidente: 'Juan',
+      vicepresidente: 'Tomas',
+      otros: 'elbro'
+    }
+  
+  ]
+  
+  const indice = 1
+
   return (
     <>
 
@@ -17,10 +38,12 @@ const AdministrarListas = () => {
       </Grid>
 
       <Grid container spacing={6}>
+        {lista.map(lista =>(
+          <Grid key = {indice + 1} item xs={12} sm={6} md={4}>
+          <CardLista lista={lista}/>
+      </Grid>
+        ))}
         
-        <Grid item xs={12} sm={6} md={4}>
-            <CardLista />
-        </Grid>
         
       </Grid>
 

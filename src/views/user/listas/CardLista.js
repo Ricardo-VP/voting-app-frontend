@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent'
 
 //enviar parametro de lista con info
 
-const CardLista = () => {
+const CardLista = ({ lista }) => {
 
 // ** Hook
 const router = useRouter()
@@ -21,11 +21,17 @@ const router = useRouter()
       <CardMedia sx={{ height: '9.375rem' }} image='/images/cards/watch-on-hand.jpg' />
       <CardContent sx={{ padding: theme => `${theme.spacing(2, 5.25, 4)} !important` }}>
         <Typography variant='h6' sx={{ marginBottom: 2 }}>
-          Lista "Nombre"
+          Lista: {lista?.nombre}
         </Typography>
         <Typography sx={{ marginBottom: 2 }}>Integrantes</Typography>
         <Typography variant='body2'>
-          Pepito, tomas, tintin
+          Presidente: {lista?.presidente}
+        </Typography>
+        <Typography variant='body2'>
+          Vicepresidente: {lista?.vicepresidente}
+        </Typography>
+        <Typography variant='body2'>
+          Otros: {lista?.otros}
         </Typography>
       </CardContent>
       <Button 
