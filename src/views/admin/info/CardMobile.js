@@ -36,8 +36,7 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 }))
 
 const CardMobile = ({ programador }) => {
-  // ** State
-
+  
   return (
     <Card>
       <Grid container spacing={6}>
