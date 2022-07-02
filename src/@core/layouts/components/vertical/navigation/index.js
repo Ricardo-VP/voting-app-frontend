@@ -16,6 +16,7 @@ import VerticalNavHeader from './VerticalNavHeader'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
+import { isUserAdmin } from 'src/services/user.service'
 
 const StyledBoxForShadow = styled(Box)({
   top: 50,
@@ -80,52 +81,56 @@ const Navigation = props => {
   }
   const ScrollWrapper = hidden ? Box : PerfectScrollbar
 
-  return (
-    <Drawer {...props}>
-      <VerticalNavHeader {...props} />
-      <StyledBoxForShadow
-        ref={shadowRef}
-        sx={{
-          background: `linear-gradient(${theme.palette.background.default} 40%,${hexToRGBA(
-            theme.palette.background.default,
-            0.1
-          )} 95%,${hexToRGBA(theme.palette.background.default, 0.05)})`
-        }}
-      />
-      <Box sx={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
-        <ScrollWrapper
-          containerRef={ref => handleInfiniteScroll(ref)}
-          {...(hidden
-            ? {
-                onScroll: container => scrollMenu(container),
-                sx: { height: '100%', overflowY: 'auto', overflowX: 'hidden' }
-              }
-            : {
-                options: { wheelPropagation: false },
-                onScrollY: container => scrollMenu(container)
-              })}
-        >
-          {beforeVerticalNavMenuContent ? beforeVerticalNavMenuContent(props) : null}
-          <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            {userVerticalNavMenuContent ? (
-              userVerticalNavMenuContent(props)
-            ) : (
-              <List className='nav-items' sx={{ transition: 'padding .25s ease', pr: 4.5 }}>
-                <VerticalNavItems
-                  groupActive={groupActive}
-                  setGroupActive={setGroupActive}
-                  currentActiveGroup={currentActiveGroup}
-                  setCurrentActiveGroup={setCurrentActiveGroup}
-                  {...props}
-                />
-              </List>
-            )}
-          </Box>
-        </ScrollWrapper>
-      </Box>
-      {afterVerticalNavMenuContent ? afterVerticalNavMenuContent(props) : null}
-    </Drawer>
-  )
+  if (isUserAdmin()) {
+    return (
+      <Drawer {...props}>
+        <VerticalNavHeader {...props} />
+        <StyledBoxForShadow
+          ref={shadowRef}
+          sx={{
+            background: `linear-gradient(${theme.palette.background.default} 40%,${hexToRGBA(
+              theme.palette.background.default,
+              0.1
+            )} 95%,${hexToRGBA(theme.palette.background.default, 0.05)})`
+          }}
+        />
+        <Box sx={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
+          <ScrollWrapper
+            containerRef={ref => handleInfiniteScroll(ref)}
+            {...(hidden
+              ? {
+                  onScroll: container => scrollMenu(container),
+                  sx: { height: '100%', overflowY: 'auto', overflowX: 'hidden' }
+                }
+              : {
+                  options: { wheelPropagation: false },
+                  onScrollY: container => scrollMenu(container)
+                })}
+          >
+            {beforeVerticalNavMenuContent ? beforeVerticalNavMenuContent(props) : null}
+            <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              {userVerticalNavMenuContent ? (
+                userVerticalNavMenuContent(props)
+              ) : (
+                <List className='nav-items' sx={{ transition: 'padding .25s ease', pr: 4.5 }}>
+                  <VerticalNavItems
+                    groupActive={groupActive}
+                    setGroupActive={setGroupActive}
+                    currentActiveGroup={currentActiveGroup}
+                    setCurrentActiveGroup={setCurrentActiveGroup}
+                    {...props}
+                  />
+                </List>
+              )}
+            </Box>
+          </ScrollWrapper>
+        </Box>
+        {afterVerticalNavMenuContent ? afterVerticalNavMenuContent(props) : null}
+      </Drawer>
+    )
+  } else {
+    return null
+  }
 }
 
 export default Navigation

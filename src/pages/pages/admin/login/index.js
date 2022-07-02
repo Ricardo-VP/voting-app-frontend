@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // ** Next Imports
 import { useRouter } from 'next/router'
@@ -32,6 +32,8 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import { login } from 'src/services/user.service'
+import Link from 'next/link'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -54,6 +56,7 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 const LoginPage = () => {
   // ** State
   const [values, setValues] = useState({
+    cedula: '',
     password: '',
     showPassword: false
   })
@@ -74,16 +77,27 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
+  // ** Check if user already logged in
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    console.log(user)
+    if (user) {
+      if (user.admin) {
+        router.push('pages/admin/inicio')
+      } else {
+        router.push('pages/user/listas')
+      }
+    }
+  }, [router])
+
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            
             <Typography
               variant='h6'
               sx={{
-                
                 lineHeight: 1,
                 fontWeight: 600,
                 textTransform: 'uppercase',
@@ -100,7 +114,15 @@ const LoginPage = () => {
             <Typography variant='body2'>Ingrese con su cédula y contraseña</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' label='Cédula' sx={{ marginBottom: 4 }} />
+            <TextField
+              autoFocus
+              fullWidth
+              id='cedula'
+              value={values.cedula}
+              onChange={handleChange('cedula')}
+              label='Cédula'
+              sx={{ marginBottom: 4 }}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Contraseña</InputLabel>
               <OutlinedInput
@@ -136,21 +158,20 @@ const LoginPage = () => {
               size='large'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={() => router.push('/pages/admin/inicio')}
+              onClick={() => login(values.cedula, values.password)}
             >
-              ingresar
+              Ingresar
             </Button>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                New on our platform?
+                ¿Quieres registrar un voto?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/register'>
-                  <LinkStyled>Create an account</LinkStyled>
+                <Link passHref href='/pages/admin/register'>
+                  <LinkStyled>Registrarme</LinkStyled>
                 </Link>
               </Typography>
-            </Box> */}
-            
+            </Box>
           </form>
         </CardContent>
       </Card>
