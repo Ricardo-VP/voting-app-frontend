@@ -11,31 +11,29 @@ const PieGraph = () => {
   // ** Hook
   const theme = useTheme()
 
-    const options = {
-        chart: {
-            type: "pie",
-            width: 600,
-            parentHeightOffset: 0,
-          },
-          plotOptions: {
-            pie: {
-                labels: ['A','B','C','D'],
-                donut: {
-                  size: '65%'
-                },
-                expandOnClick: true
-              }
-          },
-          stroke: {
-            width: 2,
-            colors: [theme.palette.background.paper]
-          },
-          legend: { show: true },
-          
-          dataLabels: { enabled: true },
-        
-        
-    }    
+  const options = {
+    series: [44, 55, 13, 43, 22],
+    options: {
+      chart: {
+        width: 380,
+        type: 'pie'
+      },
+      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      ]
+    }
+  }
 
   return (
     <Card>
@@ -46,13 +44,9 @@ const PieGraph = () => {
         }}
       />
       <CardContent>
-        
         {/* DATOS DE VOTOS */}
-        <ReactApexcharts type='pie' height={205} options={options} series={[{ data: [100, 57, 45, 75] }]} />
-        
+        <ReactApexcharts type='pie' height={300} options={options} series={options.series} />
       </CardContent>
-       
-      
     </Card>
   )
 }
