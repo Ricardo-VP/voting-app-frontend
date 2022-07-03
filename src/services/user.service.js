@@ -3,6 +3,8 @@ import router from 'next/router'
 
 export const login = async (cedula, password) => {
   try {
+    console.log(`${process.env.NEXT_PUBLIC_BACKEND_HOST}`)
+    
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/auth/login`, {
       cedula,
       password
