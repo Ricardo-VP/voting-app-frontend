@@ -3,7 +3,7 @@ import router from 'next/router'
 
 export const login = async (cedula, password) => {
   try {
-    const res = await axios.post('http://localhost:3001/auth/login', {
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/auth/login`, {
       cedula,
       password
     })
@@ -53,7 +53,7 @@ export const getUserEmail = () => {
 
 export const register = async (cedula, password) => {
   try {
-    const res = await axios.post('http://localhost:3001/auth/register', {
+    const res = await axios.post(`${process.env.BACKEND_HOST}/auth/register`, {
       cedula,
       password,
       esAdmin: false
