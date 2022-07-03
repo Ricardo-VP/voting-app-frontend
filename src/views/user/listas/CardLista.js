@@ -1,3 +1,5 @@
+import { estadoVoto, registrarVoto } from 'src/pages/pages/user/listas/services'
+
 // ** Next Imports
 import { useRouter } from 'next/router'
 
@@ -7,12 +9,27 @@ import Button from '@mui/material/Button'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
+import { useEffect, useState } from 'react'
 
 //enviar parametro de lista con info
 
 const CardLista = ({ lista }) => {
   // ** Hook
   const router = useRouter()
+
+  // ** Custom
+  const [votoHabilitado, setVotoHabilitado] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    estadoVoto()
+      .then(res => {
+        setVotoHabilitado(res.data?.habilitado)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <Card>
@@ -32,11 +49,16 @@ const CardLista = ({ lista }) => {
         ))}
       </CardContent>
       <Button
-        onClick={() => router.push('/pages/user/screen')}
+        disabled={!votoHabilitado || loading}
+        onClick={async () => {
+          setLoading(true)
+          await registrarVoto(lista?._id)
+          setLoading(false)
+        }}
         variant='contained'
         sx={{ py: 2.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
       >
-        VOTAR
+        {!votoHabilitado ? 'Voto registrado' : 'Votar'}
       </Button>
     </Card>
   )

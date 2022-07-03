@@ -33,7 +33,7 @@ const AdministrarListas = () => {
       </Grid>
 
       <Grid container spacing={6}>
-        {listas.map(lista => (
+        {listas?.map(lista => (
           <Grid key={indice + 1} item xs={12} sm={6} md={4}>
             <CardLista lista={lista} />
           </Grid>
