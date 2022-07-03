@@ -37,6 +37,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import { register } from 'src/services/user.service'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -61,7 +62,9 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 const RegisterPage = () => {
   // ** States
   const [values, setValues] = useState({
+    cedula: '',
     password: '',
+    condicionesAceptadas: false,
     showPassword: false
   })
 
@@ -85,7 +88,6 @@ const RegisterPage = () => {
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            
             <Typography
               variant='h6'
               sx={{
@@ -104,7 +106,15 @@ const RegisterPage = () => {
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='username' label='Cédula' sx={{ marginBottom: 4 }} />
+            <TextField
+              autoFocus
+              fullWidth
+              id='username'
+              value={values.cedula}
+              onChange={handleChange('cedula')}
+              label='Cédula'
+              sx={{ marginBottom: 4 }}
+            />
             {/* <TextField fullWidth type='email' label='Email' sx={{ marginBottom: 4 }} /> */}
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-register-password'>Contraseña</InputLabel>
@@ -129,7 +139,12 @@ const RegisterPage = () => {
               />
             </FormControl>
             <FormControlLabel
-              control={<Checkbox />}
+              control={
+                <Checkbox
+                  checked={values.condicionesAceptadas}
+                  onChange={() => setValues({ ...values, condicionesAceptadas: !values.condicionesAceptadas })}
+                />
+              }
               label={
                 <Fragment>
                   <span>Acepto las </span>
@@ -139,20 +154,27 @@ const RegisterPage = () => {
                 </Fragment>
               }
             />
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7 }}>
+            <Button
+              disabled={!values.condicionesAceptadas}
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={() => register(values.cedula, values.password)}
+            >
               REGISTRARSE
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                Ya tienes una cuenta?
+                ¿Ya tienes una cuenta?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/admin//login'>
+                <Link passHref href='/pages/admin/login'>
                   <LinkStyled>Ingresa aquí</LinkStyled>
                 </Link>
               </Typography>
             </Box>
-            
           </form>
         </CardContent>
       </Card>
