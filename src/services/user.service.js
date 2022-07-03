@@ -53,7 +53,7 @@ export const getUserEmail = () => {
 
 export const register = async (cedula, password) => {
   try {
-    const res = await axios.post(`${process.env.BACKEND_HOST}/auth/register`, {
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/auth/register`, {
       cedula,
       password,
       esAdmin: false
