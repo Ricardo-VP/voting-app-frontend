@@ -7,7 +7,7 @@ export const login = async (cedula, password) => {
       cedula,
       password
     })
-    handleUserLogin(res.data)
+    handleUserLogin(res.data.user)
 
     return true
   } catch (error) {
