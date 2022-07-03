@@ -11,9 +11,8 @@ import CardContent from '@mui/material/CardContent'
 //enviar parametro de lista con info
 
 const CardLista = ({ lista }) => {
-
-// ** Hook
-const router = useRouter()
+  // ** Hook
+  const router = useRouter()
 
   return (
     <Card>
@@ -21,26 +20,24 @@ const router = useRouter()
       <CardMedia sx={{ height: '9.375rem' }} image='/images/cards/watch-on-hand.jpg' />
       <CardContent sx={{ padding: theme => `${theme.spacing(2, 5.25, 4)} !important` }}>
         <Typography variant='h6' sx={{ marginBottom: 2 }}>
-          Lista: {lista?.nombre}
+          Lista: {lista?.nombre.toUpperCase()}
         </Typography>
         <Typography sx={{ marginBottom: 2 }}>Integrantes</Typography>
-        <Typography variant='body2'>
-          Presidente: {lista?.presidente}
-        </Typography>
-        <Typography variant='body2'>
-          Vicepresidente: {lista?.vicepresidente}
-        </Typography>
-        <Typography variant='body2'>
-          Otros: {lista?.otros}
-        </Typography>
+        <Typography variant='body2'>Presidente: {lista?.presidente}</Typography>
+        <Typography variant='body2'>Vicepresidente: {lista?.vicepresidente}</Typography>
+        {lista?.otrosPuestos.map(puesto => (
+          <Typography key={puesto?._id} variant='body2' sx={{ textTransform: 'capitalize' }}>
+            {puesto?.puesto}: {puesto?.nombre}
+          </Typography>
+        ))}
       </CardContent>
-      <Button 
+      <Button
         onClick={() => router.push('/pages/user/screen')}
-        variant='contained' sx={{ py: 2.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+        variant='contained'
+        sx={{ py: 2.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
       >
         VOTAR
       </Button>
-      
     </Card>
   )
 }
