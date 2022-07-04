@@ -47,7 +47,7 @@ const CardLista = ({ lista, handleDeleteLista, loading, setLoading }) => {
         ))}
       </CardContent>
       <Button
-        onClick={() => router.push('/pages/admin/edit-list/')}
+        onClick={() => router.push({ pathname: '/pages/admin/edit-list/[id]', query: { id: lista?._id } })}
         variant='contained'
         sx={{ py: 1.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
       >
