@@ -31,3 +31,11 @@ export const eliminarLista = async listaId => {
     return error
   }
 }
+
+export const agregarLista = async lista => {
+  try {
+    return await api.post('/listas', lista)
+  } catch (error) {
+    return error
+  }
+}
