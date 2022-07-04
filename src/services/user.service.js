@@ -3,13 +3,11 @@ import router from 'next/router'
 
 export const login = async (cedula, password) => {
   try {
-    console.log(`${process.env.NEXT_PUBLIC_BACKEND_HOST}`)
-    
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/auth/login`, {
       cedula,
       password
     })
-    handleUserLogin(res.data)
+    handleUserLogin(res.data.user)
 
     return true
   } catch (error) {
@@ -17,13 +15,14 @@ export const login = async (cedula, password) => {
   }
 }
 
-const handleUserLogin = data => {
-  localStorage.setItem('user', JSON.stringify(data.user))
-  if (data.user?.admin) {
-    router.push('/pages/admin/inicio')
-  } else {
-    router.push('/pages/user/listas')
-  }
+const handleUserLogin = async data => {
+  await setLocalStorageUser(data).then(() => {
+    if (data.user?.admin) {
+      router.push('/pages/admin/inicio')
+    } else {
+      router.push('/pages/user/listas')
+    }
+  })
 }
 
 export const logout = () => {
@@ -58,8 +57,10 @@ export const register = async (cedula, password) => {
     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}/auth/register`, {
       cedula,
       password,
-      esAdmin: false
+      esAdmin: false,
+      votoRegistrado: false
     })
+
     handleUserRegister(res.data)
 
     return true
@@ -68,7 +69,12 @@ export const register = async (cedula, password) => {
   }
 }
 
-const handleUserRegister = data => {
-  localStorage.setItem('user', JSON.stringify(data))
-  router.push('/pages/user/listas')
+const handleUserRegister = async data => {
+  await setLocalStorageUser(data).then(() => {
+    router.push('/pages/user/listas')
+  })
+}
+
+const setLocalStorageUser = async data => {
+  await localStorage.setItem('user', JSON.stringify(data))
 }

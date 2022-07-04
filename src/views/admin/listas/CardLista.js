@@ -13,12 +13,11 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
+import { eliminarLista } from 'src/pages/pages/admin/listas/services'
 
-//enviar parametro de lista con info
-
-const CardLista = ({ lista }) => {
-// ** Hook
-const router = useRouter()
+const CardLista = ({ lista, handleDeleteLista, loading, setLoading }) => {
+  // ** Hook
+  const router = useRouter()
 
   const [open, setOpen] = useState(false)
 
@@ -36,12 +35,16 @@ const router = useRouter()
       <CardMedia sx={{ height: '9.375rem' }} image='/images/cards/watch-on-hand.jpg' />
       <CardContent sx={{ padding: theme => `${theme.spacing(2, 5.25, 4)} !important` }}>
         <Typography variant='h6' sx={{ marginBottom: 2 }}>
-          Lista: {lista?.nombre}
+          Lista: {lista?.nombre.toUpperCase()}
         </Typography>
         <Typography sx={{ marginBottom: 2 }}>Integrantes</Typography>
         <Typography variant='body2'>Presidente: {lista?.presidente}</Typography>
         <Typography variant='body2'>Vicepresidente: {lista?.vicepresidente}</Typography>
-        <Typography variant='body2'>Otros: {lista?.otros}</Typography>
+        {lista?.otrosPuestos.map(puesto => (
+          <Typography key={puesto?._id} variant='body2' sx={{ textTransform: 'capitalize' }}>
+            {puesto?.puesto}: {puesto?.nombre}
+          </Typography>
+        ))}
       </CardContent>
       <Button
         onClick={() => router.push('/pages/admin/edit-list/')}
@@ -65,12 +68,21 @@ const router = useRouter()
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>{`Está seguro de eliminar la lista ${lista?.nombre}?`}</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>{`Está seguro de eliminar la lista ${lista?.nombre.toUpperCase()}?`}</DialogTitle>
         <DialogContent>
-          <DialogContentText id='alert-dialog-description'>Se eliminaran todos los datos</DialogContentText>
+          <DialogContentText id='alert-dialog-description'>Se eliminarán todos los datos</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} autoFocus>
+          <Button
+            disabled={loading}
+            onClick={async () => {
+              setLoading(true)
+              await handleDeleteLista(lista?._id)
+              handleClose()
+              setLoading(false)
+            }}
+            autoFocus
+          >
             Eliminar
           </Button>
           <Button onClick={handleClose}>Cancelar</Button>

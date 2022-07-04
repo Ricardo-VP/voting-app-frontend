@@ -7,9 +7,11 @@ import CardContent from '@mui/material/CardContent'
 // ** Custom Components Imports
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
 
-const WeeklyOverview = () => {
+const BarGraph = ({ listas }) => {
   // ** Hook
   const theme = useTheme()
+
+  console.log(listas)
 
   const options = {
     chart: {
@@ -20,7 +22,7 @@ const WeeklyOverview = () => {
       bar: {
         borderRadius: 1,
         distributed: true,
-        columnWidth: '40%',
+        columnWidth: '75%',
         endingShape: 'rounded',
         startingShape: 'rounded'
       }
@@ -42,13 +44,7 @@ const WeeklyOverview = () => {
     dataLabels: { enabled: true },
 
     // COLORES DE BARRAS
-    colors: [
-      '#F44336',
-      '#2E93fA',
-      '#66DA26',
-      '#E91E63'
-      
-    ],
+    colors: ['#F44336', '#2E93fA', '#66DA26', '#E91E63'],
     states: {
       hover: {
         filter: { type: 'none' }
@@ -58,7 +54,9 @@ const WeeklyOverview = () => {
       }
     },
     xaxis: {
-      categories: ['A', 'B', 'C', 'D'],
+      categories: listas?.map(lista => {
+        return lista.nombre
+      }),
       tickPlacement: 'on',
       labels: { show: true },
       axisTicks: { show: false },
@@ -69,12 +67,12 @@ const WeeklyOverview = () => {
         text: 'VOTOS'
       },
       show: true,
-      tickAmount: 4,
+      tickAmount: 1,
       labels: {
         offsetX: -17,
-        formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}k`
+        formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}`
       }
-    },
+    }
   }
 
   return (
@@ -85,14 +83,23 @@ const WeeklyOverview = () => {
           sx: { lineHeight: '2rem !important', letterSpacing: '0.15px !important' }
         }}
       />
-      <CardContent sx={{ '& .apexcharts-xcrosshairs.apexcharts-active': { opacity:0 } }}>
-        
+      <CardContent sx={{ '& .apexcharts-xcrosshairs.apexcharts-active': { opacity: 0 } }}>
         {/* DATOS DE VOTOS */}
-        <ReactApexcharts type='bar' height={205} options={options} series={[{ data: [100, 57, 45, 75] }]} />
-        
+        <ReactApexcharts
+          type='bar'
+          height={205}
+          options={options}
+          series={[
+            {
+              data: listas?.map(lista => {
+                return lista?.votos
+              })
+            }
+          ]}
+        />
       </CardContent>
     </Card>
   )
 }
 
-export default WeeklyOverview
+export default BarGraph
