@@ -12,20 +12,46 @@ import FormLayoutsSeparator from 'src/views/admin/edit-list/FormLayoutsSeparator
 import 'react-datepicker/dist/react-datepicker.css'
 
 import { useRouter } from 'next/router'
+import { editarLista } from '../edit-list/services'
+import { useEffect, useState } from 'react'
+import { obtenerLista } from '../../admin/edit-list/services'
 
 const FormLayouts = () => {
+
+  const [listas, setListas] = useState([])
+  const [loading, setLoading] = useState(false)
+
   const router = useRouter()
   const { id } = router.query
-  console.log(id)
+  
+  useEffect((id) => {
+    obtenerLista(id)
+      .then(res => {
+        setListas(res.data?.listas)
+      })
+      .catch(err => {
+        console.log(err)
+        setListas([])
+      })
+  }, [])
 
-  const lista = [
-    {
-      nombre: 'A',
-      presidente: 'Pepito',
-      vicepresidente: 'Tomas',
-      otros: ['jaimito', ', steven']
-    }
-  ]
+  const handleEditLista = async listaId => {
+    setLoading(true)
+    await editarLista(listaId)
+    await fetchLista(listaId)
+    setLoading(false)
+  }
+
+  const fetchLista = async listaId => {
+    await obtenerLista(listaId)
+      .then(res => {
+        setListas(res.data?.listas)
+      })
+      .catch(err => {
+        console.log(err)
+        setListas([])
+      })
+  }
 
   const indice = 1
 
@@ -38,11 +64,11 @@ const FormLayouts = () => {
       </Grid>
       <DatePickerWrapper>
         <Grid container spacing={6}>
-          {lista.map(lista => (
-            <Grid key={indice + 1} item xs={12}>
-              <FormLayoutsSeparator lista={lista} />
+          
+            <Grid item xs={12}>
+              <FormLayoutsSeparator loading={loading} setLoading={setLoading} handleEditLista={handleEditLista} listas={listas}/>
             </Grid>
-          ))}
+          
         </Grid>
       </DatePickerWrapper>
     </>

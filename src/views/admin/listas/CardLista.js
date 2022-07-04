@@ -13,7 +13,6 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import { eliminarLista } from 'src/pages/pages/admin/listas/services'
 
 const CardLista = ({ lista, handleDeleteLista, loading, setLoading }) => {
   // ** Hook

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { obtenerListas } from '../../user/listas/services'
+import { obtenerListas } from '../../admin/listas/services'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'

@@ -8,22 +8,36 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
-import CardHeader from '@mui/material/CardHeader'
 import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Dialog from '@mui/material/Dialog'
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
 })
 
-const FormLayoutsSeparator = ({ lista }) => {
+const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) => {
   // ** States
   const [language, setLanguage] = useState([])
   const [date, setDate] = useState(null)
+
+  const [open, setOpen] = useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const [values, setValues] = useState({
     password: '',
@@ -123,7 +137,7 @@ const FormLayoutsSeparator = ({ lista }) => {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-                <TextField fullWidth label={lista?.otros}/>
+                <TextField fullWidth label={lista?.otrospuestos}/>
             </Grid>
 
             <Grid item xs={12}>
@@ -154,12 +168,40 @@ const FormLayoutsSeparator = ({ lista }) => {
 
         <Divider sx={{ margin: 0 }} />
         <CardActions>
-          <Button size='large' type='submit' sx={{ mr: 2 }} variant='contained'>
-            editar
+          <Button
+        onClick={handleClickOpen}
+        variant='contained'
+        color='success'
+        sx={{ py: 1.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+      >
+        editar
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>{`Está seguro de editar la lista ${lista?.nombre.toUpperCase()}?`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>Se editarán todos los datos</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            disabled={loading}
+            onClick={async () => {
+              setLoading(true)
+              await handleEditLista(lista?._id)
+              handleClose()
+              setLoading(false)
+            }}
+            autoFocus
+          >
+            Editar
           </Button>
-          <Button size='large' color='secondary' variant='outlined'>
-            Cancelar
-          </Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+        </DialogActions>
+      </Dialog>
         </CardActions>
       </form>
     </Card>
