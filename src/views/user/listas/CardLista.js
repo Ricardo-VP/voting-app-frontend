@@ -1,5 +1,3 @@
-import { estadoVoto, registrarVoto } from 'src/pages/pages/user/listas/services'
-
 // ** Next Imports
 import { useRouter } from 'next/router'
 
@@ -10,6 +8,8 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import { useEffect, useState } from 'react'
+
+import { estadoVoto, registrarVoto } from 'src/services/user.service'
 
 //enviar parametro de lista con info
 

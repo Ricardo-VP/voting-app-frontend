@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { obtenerListas } from './services'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
@@ -7,6 +6,8 @@ import Typography from '@mui/material/Typography'
 
 // ** Demo components
 import CardLista from 'src/views/user/listas/CardLista'
+
+import { obtenerListas } from 'src/services/list.service'
 
 const AdministrarListas = () => {
   const [listas, setListas] = useState([])
