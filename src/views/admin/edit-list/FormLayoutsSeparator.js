@@ -1,5 +1,5 @@
 // ** React Imports
-import { forwardRef, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -26,10 +26,12 @@ const CustomInput = forwardRef((props, ref) => {
 
 const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) => {
   // ** States
-  const [language, setLanguage] = useState([])
-  const [date, setDate] = useState(null)
-
   const [open, setOpen] = useState(false)
+  const [values, setValues] = useState({})
+
+  useEffect(() => {
+    setValues(lista)
+  }, [lista])
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -39,33 +41,37 @@ const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) =
     setOpen(false)
   }
 
-  const [values, setValues] = useState({
-    password: '',
-    password2: '',
-    showPassword: false,
-    showPassword2: false
-  })
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value })
+  }
+
+  const handleChangeOtrosPuestos = (index, prop, value) => {
+    const array = [...values.otrosPuestos]
+    array[index] = {
+      ...values.otrosPuestos[index],
+      [prop]: value
+    }
+    setValues({ ...values, otrosPuestos: array })
+  }
 
   return (
     <Card>
       {/* <CardHeader title='Registro de Listas' titleTypographyProps={{ variant: 'h6' }} /> */}
       <Divider sx={{ margin: 0 }} />
-      
+
       <form onSubmit={e => e.preventDefault()}>
         <CardContent item xs={12} sm={6}>
-
-          
           <Grid container spacing={5}>
             <Grid item xs={12}>
-                <Typography variant='body2' sx={{ fontWeight: 600 }}>
-                  Datos de lista
-                </Typography>
+              <Typography variant='body2' sx={{ fontWeight: 600 }}>
+                Datos de lista
+              </Typography>
             </Grid>
-                
+
             <Grid item xs={12} sm={6}>
-                <TextField fullWidth label={lista?.nombre}/>
+              <TextField value={values?.nombre} onChange={handleChange('nombre')} fullWidth />
             </Grid>
-              
+
             <Grid item xs={12}>
               <Typography variant='body2' sx={{ fontWeight: 600 }}>
                 Miembro
@@ -73,7 +79,7 @@ const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) =
             </Grid>
 
             <Grid item xs={12} sm={6}>
-                <TextField fullWidth label={lista?.presidente}/>
+              <TextField fullWidth value={values?.presidente} onChange={handleChange('presidente')} />
             </Grid>
 
             <Grid item xs={12}>
@@ -84,49 +90,18 @@ const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) =
 
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                    <InputLabel id='form-layouts-separator-select-label'>Presidente</InputLabel>
-                      <Select
-                        label='Presidente'
-                        defaultValue=''
-                        id='form-layouts-separator-select'
-                        labelId='form-layouts-separator-select-label'
-                    >
-                        <MenuItem value='Presidente'>Presidente</MenuItem>
-                        <MenuItem value='Vicepresidente'>Vicepresidente</MenuItem>
-                        <MenuItem value='Otro'>Otro</MenuItem>
-                      </Select>
-              </FormControl>
-            </Grid>
-            
-            <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
-                Miembro
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-                <TextField fullWidth label={lista?.vicepresidente}/>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Typography variant='body2' sx={{ fontWeight: 600 }}>
-                Cargo
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                    <InputLabel id='form-layouts-separator-select-label'>Vicepresidente</InputLabel>
-                      <Select
-                        label='Vicepresidente'
-                        defaultValue=''
-                        id='form-layouts-separator-select'
-                        labelId='form-layouts-separator-select-label'
-                    >
-                        <MenuItem value='Presidente'>Presidente</MenuItem>
-                        <MenuItem value='Vicepresidente'>Vicepresidente</MenuItem>
-                        <MenuItem value='Otro'>Otro</MenuItem>
-                      </Select>
+                <InputLabel id='form-layouts-separator-select-label'>Presidente</InputLabel>
+                <Select
+                  disabled
+                  label='Presidente'
+                  defaultValue=''
+                  id='form-layouts-separator-select'
+                  labelId='form-layouts-separator-select-label'
+                >
+                  <MenuItem value='Presidente'>Presidente</MenuItem>
+                  <MenuItem value='Vicepresidente'>Vicepresidente</MenuItem>
+                  <MenuItem value='Otro'>Otro</MenuItem>
+                </Select>
               </FormControl>
             </Grid>
 
@@ -137,7 +112,7 @@ const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) =
             </Grid>
 
             <Grid item xs={12} sm={6}>
-                <TextField fullWidth label={lista?.otrospuestos}/>
+              <TextField fullWidth onChange={handleChange('vicepresidente')} value={values?.vicepresidente} />
             </Grid>
 
             <Grid item xs={12}>
@@ -148,60 +123,91 @@ const FormLayoutsSeparator = ({ lista, handleEditLista, loading, setLoading }) =
 
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                    <InputLabel id='form-layouts-separator-select-label'>Otro</InputLabel>
-                      <Select
-                        label='Otro'
-                        defaultValue=''
-                        id='form-layouts-separator-select'
-                        labelId='form-layouts-separator-select-label'
-                    >
-                        <MenuItem value='Presidente'>Presidente</MenuItem>
-                        <MenuItem value='Vicepresidente'>Vicepresidente</MenuItem>
-                        <MenuItem value='Otro'>Otro</MenuItem>
-                      </Select>
+                <InputLabel id='form-layouts-separator-select-label'>Vicepresidente</InputLabel>
+                <Select
+                  disabled
+                  label='Vicepresidente'
+                  defaultValue=''
+                  id='form-layouts-separator-select'
+                  labelId='form-layouts-separator-select-label'
+                >
+                  <MenuItem value='Presidente'>Presidente</MenuItem>
+                  <MenuItem value='Vicepresidente'>Vicepresidente</MenuItem>
+                  <MenuItem value='Otro'>Otro</MenuItem>
+                </Select>
               </FormControl>
-            </Grid> 
+            </Grid>
 
+            {values?.otrosPuestos?.map((puesto, index) => (
+              <>
+                <Grid item xs={12} key={puesto?._id}>
+                  <Typography variant='body2' sx={{ fontWeight: 600 }}>
+                    Miembro
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    value={puesto?.nombre}
+                    onChange={event => handleChangeOtrosPuestos(index, 'nombre', event.target.value)}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Typography variant='body2' sx={{ fontWeight: 600 }}>
+                    Cargo
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    onChange={event => handleChangeOtrosPuestos(index, 'puesto', event.target.value)}
+                    value={puesto?.puesto}
+                  />
+                </Grid>
+              </>
+            ))}
           </Grid>
-          
         </CardContent>
 
         <Divider sx={{ margin: 0 }} />
         <CardActions>
           <Button
-        onClick={handleClickOpen}
-        variant='contained'
-        color='success'
-        sx={{ py: 1.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
-      >
-        editar
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>{`Está seguro de editar la lista ${lista?.nombre.toUpperCase()}?`}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>Se editarán todos los datos</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            disabled={loading}
-            onClick={async () => {
-              setLoading(true)
-              await handleEditLista(lista?._id)
-              handleClose()
-              setLoading(false)
-            }}
-            autoFocus
+            onClick={handleClickOpen}
+            variant='contained'
+            color='success'
+            sx={{ py: 1.5, width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
           >
-            Editar
+            editar
           </Button>
-          <Button onClick={handleClose}>Cancelar</Button>
-        </DialogActions>
-      </Dialog>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby='alert-dialog-title'
+            aria-describedby='alert-dialog-description'
+          >
+            <DialogTitle id='alert-dialog-title'>{`Está seguro de editar la lista ${values?.nombre?.toUpperCase()}?`}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id='alert-dialog-description'>Se editarán todos los datos</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                disabled={loading}
+                onClick={async () => {
+                  setLoading(true)
+                  await handleEditLista(lista?._id, values)
+                  handleClose()
+                  setLoading(false)
+                }}
+                autoFocus
+              >
+                Editar
+              </Button>
+              <Button onClick={handleClose}>Cancelar</Button>
+            </DialogActions>
+          </Dialog>
         </CardActions>
       </form>
     </Card>

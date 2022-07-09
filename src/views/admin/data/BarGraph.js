@@ -92,7 +92,7 @@ const BarGraph = ({ listas }) => {
           series={[
             {
               data: listas?.map(lista => {
-                return lista?.votos
+                return lista?.votos ?? 0
               })
             }
           ]}

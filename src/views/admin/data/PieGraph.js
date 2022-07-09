@@ -7,31 +7,22 @@ import CardContent from '@mui/material/CardContent'
 // ** Custom Components Imports
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
 
-const PieGraph = () => {
+const PieGraph = ({ listas }) => {
   // ** Hook
   const theme = useTheme()
 
   const options = {
-    series: [44, 55, 13, 43, 22],
+    series: listas?.map(lista => {
+      return lista?.votos ?? 0
+    }),
     options: {
       chart: {
         width: 380,
         type: 'pie'
       },
-      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }
-      ]
+      labels: listas?.map(lista => {
+        return lista?.nombre
+      })
     }
   }
 

@@ -14,7 +14,9 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import { agregarLista } from 'src/pages/pages/admin/listas/services'
+
+import { agregarLista } from 'src/services/list.service'
+import router from 'next/router'
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField fullWidth {...props} inputRef={ref} label='Birth Date' autoComplete='off' />
@@ -22,8 +24,6 @@ const CustomInput = forwardRef((props, ref) => {
 
 const FormLayoutsSeparator = () => {
   // ** States
-  const [language, setLanguage] = useState([])
-  const [date, setDate] = useState(null)
 
   const [values, setValues] = useState({
     letra: '',
@@ -60,8 +60,8 @@ const FormLayoutsSeparator = () => {
         }
       })
     }
-    console.log(lista)
     await agregarLista(lista)
+    router.push('/pages/admin/listas/')
   }
 
   return (

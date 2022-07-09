@@ -24,9 +24,33 @@ const api = axios.create({
 
 // -------- FUNCIONES -------
 
-export const editarLista = async listaId => {
+export const eliminarLista = async listaId => {
   try {
-    return await api.put(`/listas/${listaId}`)
+    return await api.delete(`/listas/${listaId}`)
+  } catch (error) {
+    return error
+  }
+}
+
+export const agregarLista = async lista => {
+  try {
+    return await api.post('/listas', lista)
+  } catch (error) {
+    return error
+  }
+}
+
+export const obtenerListas = async () => {
+  try {
+    return await api.get(`/listas`)
+  } catch (error) {
+    return error
+  }
+}
+
+export const editarLista = async (listaId, lista) => {
+  try {
+    return await api.put(`/listas/${listaId}`, lista)
   } catch (error) {
     return error
   }

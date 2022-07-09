@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { obtenerListas } from '../../admin/listas/services'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
@@ -10,7 +9,9 @@ import CardLista from 'src/views/admin/listas/CardLista'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
-import { eliminarLista } from './services'
+
+import { eliminarLista, obtenerListas } from 'src/services/list.service'
+import { CircularProgress } from '@mui/material'
 
 const AdministrarListas = () => {
   const [listas, setListas] = useState([])
@@ -19,7 +20,9 @@ const AdministrarListas = () => {
   useEffect(() => {
     obtenerListas()
       .then(res => {
+        setLoading(true)
         setListas(res.data?.listas)
+        setLoading(false)
       })
       .catch(err => {
         console.log(err)
@@ -39,7 +42,9 @@ const AdministrarListas = () => {
   const fetchListas = async () => {
     await obtenerListas()
       .then(res => {
+        setLoading(true)
         setListas(res.data?.listas)
+        setLoading(false)
       })
       .catch(err => {
         console.log(err)
@@ -51,7 +56,11 @@ const AdministrarListas = () => {
     <>
       <Grid container spacing={6}>
         <Grid item xs={12} sx={{ paddingBottom: 5 }}>
-          <Typography variant='h4'>{listas?.length > 0 ? 'Listas' : 'Aún no hay listas registradas'}</Typography>
+          {loading === true ? (
+            <CircularProgress />
+          ) : (
+            <Typography variant='h4'>{listas?.length > 0 ? 'Listas' : 'Aún no hay listas registradas'}</Typography>
+          )}
         </Grid>
       </Grid>
 

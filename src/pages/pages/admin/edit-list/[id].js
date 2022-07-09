@@ -12,48 +12,34 @@ import FormLayoutsSeparator from 'src/views/admin/edit-list/FormLayoutsSeparator
 import 'react-datepicker/dist/react-datepicker.css'
 
 import { useRouter } from 'next/router'
-import { editarLista } from '../edit-list/services'
 import { useEffect, useState } from 'react'
-import { obtenerLista } from '../../admin/edit-list/services'
+import { editarLista, obtenerLista } from 'src/services/list.service'
+import { CircularProgress } from '@mui/material'
 
 const FormLayouts = () => {
-
-  const [listas, setListas] = useState([])
+  const [lista, setLista] = useState({})
   const [loading, setLoading] = useState(false)
 
   const router = useRouter()
   const { id } = router.query
-  
-  useEffect((id) => {
+
+  useEffect(() => {
     obtenerLista(id)
       .then(res => {
-        setListas(res.data?.listas)
+        setLista(res.data?.lista)
       })
       .catch(err => {
         console.log(err)
-        setListas([])
+        setLista([])
       })
-  }, [])
+  }, [id])
 
-  const handleEditLista = async listaId => {
+  const handleEditLista = async (listaId, lista) => {
     setLoading(true)
-    await editarLista(listaId)
-    await fetchLista(listaId)
+    await editarLista(listaId, lista)
+    router.push('/pages/admin/listas/')
     setLoading(false)
   }
-
-  const fetchLista = async listaId => {
-    await obtenerLista(listaId)
-      .then(res => {
-        setListas(res.data?.listas)
-      })
-      .catch(err => {
-        console.log(err)
-        setListas([])
-      })
-  }
-
-  const indice = 1
 
   return (
     <>
@@ -64,11 +50,18 @@ const FormLayouts = () => {
       </Grid>
       <DatePickerWrapper>
         <Grid container spacing={6}>
-          
-            <Grid item xs={12}>
-              <FormLayoutsSeparator loading={loading} setLoading={setLoading} handleEditLista={handleEditLista} listas={listas}/>
-            </Grid>
-          
+          <Grid item xs={12}>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <FormLayoutsSeparator
+                loading={loading}
+                setLoading={setLoading}
+                handleEditLista={handleEditLista}
+                lista={lista}
+              />
+            )}
+          </Grid>
         </Grid>
       </DatePickerWrapper>
     </>

@@ -11,7 +11,7 @@ import PieGraph from 'src/views/admin/data/PieGraph'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import { useEffect, useState } from 'react'
-import { obtenerListas } from '../../user/listas/services'
+import { obtenerListas } from 'src/services/list.service'
 
 const AnalisisData = () => {
   const [listas, setListas] = useState([])
