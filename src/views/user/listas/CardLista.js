@@ -52,7 +52,8 @@ const CardLista = ({ lista }) => {
         disabled={!votoHabilitado || loading}
         onClick={async () => {
           setLoading(true)
-          await registrarVoto(lista?._id)
+          const user = JSON.parse(localStorage.getItem('user'))
+          await registrarVoto(lista?._id, user?.token.token)
           setLoading(false)
         }}
         variant='contained'

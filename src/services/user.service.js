@@ -101,11 +101,19 @@ const setLocalStorageUser = async data => {
   await localStorage.setItem('user', JSON.stringify(data))
 }
 
-export const registrarVoto = async listaId => {
+export const registrarVoto = async (listaId, token) => {
   try {
-    await api.post(`/listas/votar/${listaId}`, {
-      userId: userId()
-    })
+    await api.post(
+      `/listas/votar/${listaId}`,
+      {
+        userId: userId()
+      },
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    )
     router.push('/pages/user/screen')
   } catch (error) {
     return error
