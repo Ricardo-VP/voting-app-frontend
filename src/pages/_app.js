@@ -1,6 +1,6 @@
 // ** Next Imports
 import Head from 'next/head'
-import { Router } from 'next/router'
+import router, { Router } from 'next/router'
 
 // ** Loader Import
 import NProgress from 'nprogress'
@@ -26,6 +26,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 
 // ** Global css styles
 import '../../styles/globals.css'
+import { useEffect } from 'react'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -49,14 +50,26 @@ const App = props => {
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
+  // ** Check if user is logged in
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    if (!user) {
+      router.push('/pages/admin/login')
+    } else {
+      if (!user.admin && router.pathname.includes('/admin/') && router.pathname !== '/pages/admin/login') {
+        router.push('/pages/404')
+      } else if (user.admin && router.pathname.includes('/user/')) {
+        router.push('/pages/admin/inicio')
+      }
+    }
+  }, [])
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
-        <meta
-          name='description'
-          content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
-        />
+        <title>{`${themeConfig.templateName}`}</title>
+        <meta name='description' content={`${themeConfig.templateName}`} />
         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>

@@ -13,6 +13,7 @@ import Magnify from 'mdi-material-ui/Magnify'
 import ModeToggler from 'src/@core/layouts/components/shared-components/ModeToggler'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 import NotificationDropdown from 'src/@core/layouts/components/shared-components/NotificationDropdown'
+import { isUserAdmin } from 'src/services/user.service'
 
 const AppBarContent = props => {
   // ** Props
@@ -24,7 +25,7 @@ const AppBarContent = props => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-        {hidden ? (
+        {hidden && isUserAdmin() ? (
           <IconButton
             color='inherit'
             onClick={toggleNavVisibility}
@@ -33,17 +34,6 @@ const AppBarContent = props => {
             <Menu />
           </IconButton>
         ) : null}
-        <TextField
-          size='small'
-          sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position='start'>
-                <Magnify fontSize='small' />
-              </InputAdornment>
-            )
-          }}
-        />
       </Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
         {hiddenSm ? null : (
@@ -53,16 +43,9 @@ const AppBarContent = props => {
             rel='noreferrer'
             sx={{ mr: 4, display: 'flex' }}
             href='https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free'
-          >
-            <img
-              height={24}
-              alt='github stars'
-              src='https://img.shields.io/github/stars/themeselection/materio-mui-react-nextjs-admin-template-free?style=social'
-            />
-          </Box>
+          ></Box>
         )}
         <ModeToggler settings={settings} saveSettings={saveSettings} />
-        <NotificationDropdown />
         <UserDropdown />
       </Box>
     </Box>

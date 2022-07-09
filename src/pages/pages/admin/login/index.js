@@ -33,6 +33,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 import { login } from 'src/services/user.service'
+import Link from 'next/link'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -161,16 +162,16 @@ const LoginPage = () => {
             >
               Ingresar
             </Button>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                New on our platform?
+                ¿Quieres registrar un voto?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/register'>
-                  <LinkStyled>Create an account</LinkStyled>
+                <Link passHref href='/pages/admin/register'>
+                  <LinkStyled>Registrarme</LinkStyled>
                 </Link>
               </Typography>
-            </Box> */}
+            </Box>
           </form>
         </CardContent>
       </Card>

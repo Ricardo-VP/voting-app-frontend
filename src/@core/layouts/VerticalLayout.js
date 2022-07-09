@@ -75,9 +75,9 @@ const VerticalLayout = props => {
           <ContentWrapper
             className='layout-page-content'
             sx={{
-              ...(contentWidth === 'boxed' && {
+              ...(contentWidth === 'grid' && {
                 mx: 'auto',
-                '@media (min-width:1440px)': { maxWidth: 1440 },
+                '@media (min-width:1900px)': { maxWidth: 1900 },
                 '@media (min-width:1200px)': { maxWidth: '100%' }
               })
             }}
