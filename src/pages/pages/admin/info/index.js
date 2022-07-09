@@ -17,7 +17,7 @@ const InfoPage = () => {
       fotoUrl: 'https://img.icons8.com/ios/500/user--v1.png'
     },
     {
-      nombre: 'FERNANDO SEBASTIAN GUERRA OCAÑA - 7046',
+      nombre: 'FERNANDO SEBASTIAN GUERRA OCAÑA - 7106',
       email: 'fernando.guerra@espoch.edu.ec',
       github: '',
       fotoUrl: 'https://cdn-icons-png.flaticon.com/512/17/17797.png'
