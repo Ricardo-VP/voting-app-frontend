@@ -114,6 +114,7 @@ const RegisterPage = () => {
               onChange={handleChange('cedula')}
               label='Cédula'
               sx={{ marginBottom: 4 }}
+              inputProps={{ maxLength: 10 }}
             />
             {/* <TextField fullWidth type='email' label='Email' sx={{ marginBottom: 4 }} /> */}
             <FormControl fullWidth>
