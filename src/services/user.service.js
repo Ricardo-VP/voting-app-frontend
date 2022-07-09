@@ -2,11 +2,9 @@ import axios from 'axios'
 import router from 'next/router'
 
 const token = () => {
-  if (!(typeof window === 'undefined')) {
-    const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user'))
 
-    return user?.token.token
-  }
+  return user?.token.token
 }
 
 const userId = () => {
