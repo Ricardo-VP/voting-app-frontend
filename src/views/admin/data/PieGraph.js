@@ -22,7 +22,8 @@ const PieGraph = ({ listas }) => {
       },
       labels: listas?.map(lista => {
         return lista?.nombre
-      })
+      }),
+      colors: ['#F44336', '#2E93fA', '#66DA26', '#E91E63']
     }
   }
 
