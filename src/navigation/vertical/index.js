@@ -12,21 +12,6 @@ const navigation = () => {
       path: '/pages/admin/inicio'
     },
     {
-      sectionTitle: 'Registros'
-    },
-    {
-      title: 'Login',
-      icon: Login,
-      path: '/pages/admin/login',
-      openInNewTab: true
-    },
-    {
-      title: 'Register',
-      icon: AccountPlusOutline,
-      path: '/pages/admin/register',
-      openInNewTab: true
-    },
-    {
       sectionTitle: 'Información'
     },
     {
