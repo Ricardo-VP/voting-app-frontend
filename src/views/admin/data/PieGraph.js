@@ -15,16 +15,14 @@ const PieGraph = ({ listas }) => {
     series: listas?.map(lista => {
       return lista?.votos ?? 0
     }),
-    options: {
-      chart: {
-        width: 380,
-        type: 'pie'
-      },
-      labels: listas?.map(lista => {
-        return lista?.nombre
-      }),
-      colors: ['#F44336', '#2E93fA', '#66DA26', '#E91E63']
-    }
+    chart: {
+      width: 380,
+      type: 'pie'
+    },
+    labels: listas?.map(lista => {
+      return lista?.nombre
+    }),
+    colors: ['#F44336', '#2E93fA', '#66DA26', '#E91E63']
   }
 
   return (
