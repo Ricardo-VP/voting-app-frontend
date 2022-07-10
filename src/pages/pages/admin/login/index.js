@@ -101,7 +101,7 @@ const LoginPage = () => {
                 lineHeight: 1,
                 fontWeight: 600,
                 textTransform: 'uppercase',
-                fontSize: '1.5rem !important'
+                fontSize: '1.5rem !important',
               }}
             >
               {themeConfig.templateName}
@@ -122,6 +122,8 @@ const LoginPage = () => {
               onChange={handleChange('cedula')}
               label='Cédula'
               sx={{ marginBottom: 4 }}
+              text
+              inputProps={{ maxLength: 10 }}
             />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-login-password'>Contraseña</InputLabel>
