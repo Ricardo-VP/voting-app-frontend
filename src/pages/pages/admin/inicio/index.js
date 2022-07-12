@@ -8,7 +8,13 @@ import { styled } from '@mui/material/styles'
 
 const BoxWrapper = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
-      width: '90vw'
+      width: '5vw'
+    }
+  }))
+
+  const Img = styled('img')(({ theme }) => ({
+    [theme.breakpoints.up('lg')]: {
+      marginTop: theme.spacing(20)
     }
   }))
 
@@ -17,12 +23,15 @@ const Dashboard = () => {
    <>
     
     <Box className='content-center'>
-      <Box sx={{ p: 39, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <BoxWrapper>
-            <Typography variant='h2'>
+      <Box sx={{ px: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        
+        <Img height='100' alt='espoch-image' src='/images/pages/espoch.jpg' />
+        
+        <BoxWrapper sx={{ px: 20}}>
+            <Typography variant='h2' sx={{ paddingTop: 5 }}>
                 {themeConfig.templateName}
             </Typography>
-          <Typography variant='h5' sx={{ mb: 1, fontSize: '1.5rem !important' }}>
+          <Typography variant='h5' sx={{ mb: 1, fontSize: '1.5rem !important'}}>
             PROYECTO DE SOFTWARE - ESTADÍSTICA
           </Typography>
           <Typography variant='body2'>SOFTWARE B</Typography>

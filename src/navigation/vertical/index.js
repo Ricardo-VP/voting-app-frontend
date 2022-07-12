@@ -1,5 +1,5 @@
 // ** Icon imports
-import { Login, HomeOutline, AccountPlusOutline, ClipboardListOutline, InformationVariant, Poll } from 'mdi-material-ui'
+import { HomeOutline, AccountPlusOutline, ClipboardListOutline, InformationVariant, Poll } from 'mdi-material-ui'
 
 const navigation = () => {
   return [

@@ -2,6 +2,8 @@
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
+import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
+import ApexChartWrapper from 'src/@core/styles/libs/react-apexcharts'
 
 // ** Demo Components Imports
 import BarGraph from 'src/views/admin/data/BarGraph'
@@ -28,8 +30,10 @@ const AnalisisData = () => {
   }, [])
 
   return (
-    <>
-      <Grid container spacing={6}>
+    
+    <ApexChartWrapper>
+
+    <Grid container spacing={6}>
         <Grid item xs={12} sx={{ paddingBottom: 5 }}>
           <Typography variant='h4'>ANÁLISIS DE DATOS</Typography>
         </Grid>
@@ -45,7 +49,8 @@ const AnalisisData = () => {
           <PieGraph listas={listas} />
         </Grid>
       </Grid>
-    </>
+    </ApexChartWrapper>
+    
   )
 }
 

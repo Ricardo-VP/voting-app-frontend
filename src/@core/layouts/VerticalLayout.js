@@ -75,9 +75,9 @@ const VerticalLayout = props => {
           <ContentWrapper
             className='layout-page-content'
             sx={{
-              ...(contentWidth === 'grid' && {
+              ...(contentWidth === 'flex' && {
                 mx: 'auto',
-                '@media (min-width:1900px)': { maxWidth: 1900 },
+                '@media (min-width:1400px)': { maxWidth: 1400 },
                 '@media (min-width:1200px)': { maxWidth: '100%' }
               })
             }}

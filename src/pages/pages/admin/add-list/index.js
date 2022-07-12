@@ -13,23 +13,24 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const FormLayouts = () => {
   return (
-    <>
     
+    <DatePickerWrapper>
+      
       <Grid container spacing={6}>
         <Grid item xs={12} sx={{ paddingBottom: 5 }}>
             <Typography variant='h4'>AGREGAR LISTA</Typography>
         </Grid>
       </Grid>
-      <DatePickerWrapper>
+      
         <Grid container spacing={6}>
           
           <Grid item xs={12}>
             <FormLayoutsSeparator />
           </Grid>
         </Grid>
-      </DatePickerWrapper>
-    </>
-    
+
+    </DatePickerWrapper>
+
   )
 }
 
