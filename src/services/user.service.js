@@ -42,7 +42,7 @@ const handleUserLogin = async data => {
     if (data.user?.admin) {
       router.push('/pages/admin/inicio')
     } else {
-      router.push('/pages/user/listas')
+      router.push('/pages2/user/listas')
     }
   })
 }
@@ -93,7 +93,7 @@ export const register = async (cedula, password) => {
 
 const handleUserRegister = async data => {
   await setLocalStorageUser(data).then(() => {
-    router.push('/pages/user/listas')
+    router.push('/pages2/user/listas')
   })
 }
 
@@ -114,7 +114,7 @@ export const registrarVoto = async (listaId, token) => {
         }
       }
     )
-    router.push('/pages/user/screen')
+    router.push('/pages2/user/screen')
   } catch (error) {
     return error
   }
