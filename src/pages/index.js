@@ -84,7 +84,7 @@ const LoginPage = () => {
       if (user.admin) {
         router.push('pages/admin/inicio')
       } else {
-        router.push('pages2')
+        router.push('pages2/user/listas')
       }
     }
   }, [router])

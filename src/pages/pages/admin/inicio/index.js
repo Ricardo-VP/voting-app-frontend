@@ -27,7 +27,7 @@ const Dashboard = () => {
         
         <Img height='100' alt='espoch-image' src='/images/pages/espoch.jpg' />
         
-        <BoxWrapper sx={{ px: 20}}>
+        
             <Typography variant='h2' sx={{ paddingTop: 5 }}>
                 {themeConfig.templateName}
             </Typography>
@@ -35,7 +35,7 @@ const Dashboard = () => {
             PROYECTO DE SOFTWARE - ESTADÍSTICA
           </Typography>
           <Typography variant='body2'>SOFTWARE B</Typography>
-        </BoxWrapper>
+        
         
       </Box>
     </Box>

@@ -14,17 +14,15 @@ const FooterContent = () => {
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-      <BoxWrapper sx={{ px: 25}}>
+      
         <Typography sx={{ mr: 2 }}>
-          {`© ${new Date().getFullYear()}, Hecho `}
-          {' por '}
+          {`© ${new Date().getFullYear()}, Hecho por `}
           <Link target='_blank' href='https://github.com/Gokrusk/'>
             Nigell Jama
           </Link>
           {' '}y
           {' '}Sebastian Guerra
         </Typography>
-      </BoxWrapper>
       
     </Box>
   )
