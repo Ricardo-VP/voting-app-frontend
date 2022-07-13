@@ -30,7 +30,7 @@ const UserLayout = ({ children }) => {
 
   return (
     <VerticalLayout
-      hidden={hidden}
+      hidden={false}
       settings={settings}
       saveSettings={saveSettings}
       verticalNavItems={VerticalNavItems()} // Navigation Items

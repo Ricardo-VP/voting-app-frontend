@@ -80,8 +80,9 @@ const Navigation = props => {
     }
   }
   const ScrollWrapper = hidden ? Box : PerfectScrollbar
+  const adm = isUserAdmin()
 
-  if (isUserAdmin()) {
+  if (adm) {
     return (
       <Drawer {...props}>
         <VerticalNavHeader {...props} />
