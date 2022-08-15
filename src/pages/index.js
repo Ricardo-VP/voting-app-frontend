@@ -61,7 +61,6 @@ const LoginPage = () => {
   })
 
   // ** Hook
-  const theme = useTheme()
   const router = useRouter()
 
   const handleChange = prop => event => {
